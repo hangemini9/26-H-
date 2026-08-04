@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "MSPM0G3507 XDS110 Live Tune",
+            "type": "ccs-debug",
+            "request": "launch",
+            "targetConfig": "${workspaceFolder}/targetConfigs/mspm0g3507_xds110.ccxml",
+            "connections": [
+                {
+                    "name": "Texas Instruments XDS110 USB Debug Probe_0",
+                    "cores": [
+                        {
+                            "name": "CORTEX_M0P",
+                            "program": "${workspaceFolder}/ticlang/mspm0dache.out"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mspm0g3507_xds110.ccxml",
+            "type": "ccs-debug",
+            "request": "launch",
+            "targetConfig": "${workspaceFolder}\\targetConfigs\\mspm0g3507_xds110.ccxml"
+        }
+    ]
+}

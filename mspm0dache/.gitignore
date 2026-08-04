@@ -1,0 +1,7 @@
+ticlang/*.obj
+ticlang/*.out
+ticlang/*.map
+ticlang/*.d
+.vscode/ipch/
+*.log
+.ti-appdata/

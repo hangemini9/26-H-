@@ -1,0 +1,65 @@
+/*********************************************************************
+*
+*  Ozone project: MC02 dedicated total-loop-delay test
+*
+*  Build first:
+*    cmake --preset DelayTest
+*    cmake --build --preset DelayTest
+*
+*  This project deliberately opens only the DelayTest ELF.
+*
+**********************************************************************
+*/
+
+void OnProjectLoad(void) {
+  Project.SetDevice("STM32H723VG");
+  Project.SetHostIF("USB", "0");
+  Project.SetTargetIF("SWD");
+  Project.SetTIFSpeed("4 MHz");
+
+  Project.AddRootPath(".");
+  Project.AddSvdFile("Debug/STM32H723.svd");
+
+  File.Open("build/DelayTest/gimbal_MC02.elf");
+}
+
+/*
+ * Invoke these helpers from Ozone Console through Script.Exec(), for
+ * example: Script.Exec("DelayTestPrepare")
+ *
+ * Target.WriteU32 uses J-Link background memory access and does not halt
+ * the control loop.
+ */
+void _DelayTestPost(unsigned int Request) {
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.delay_test_key"),
+    0xD31A7E57
+  );
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.delay_test_request"),
+    Request
+  );
+}
+
+void DelayTestPrepare(void) {
+  _DelayTestPost(1);
+}
+
+void DelayTestValidateEmpty(void) {
+  _DelayTestPost(2);
+}
+
+void DelayTestAckMechanical(void) {
+  _DelayTestPost(3);
+}
+
+void DelayTestMeasure(void) {
+  _DelayTestPost(4);
+}
+
+void DelayTestStop(void) {
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.delay_test_request"),
+    5
+  );
+}

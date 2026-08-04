@@ -1,0 +1,40 @@
+/*********************************************************************
+* SEGGER Ozone Debug Project
+*
+* Target : TI MSPM0G3507
+* ELF    : ticlang/mspm0dache.out
+* IF     : SWD via external J-Link
+*********************************************************************/
+
+void OnProjectLoad(void) {
+  Project.SetDevice("MSPM0G3507");
+  Project.SetHostIF("USB", "");
+  Project.SetTargetIF("SWD");
+  Project.SetTIFSpeed("1000 kHz");
+  Project.AddPathSubstitute("$(ProjectDir)", "$(ProjectDir)");
+  File.Open("$(ProjectDir)/ticlang/mspm0dache.out");
+}
+
+void OnStartupComplete(void) {
+}
+
+void AfterTargetConnect(void) {
+  Target.Halt();
+}
+
+void BeforeTargetDownload(void) {
+  Target.Halt();
+}
+
+void TargetReset(void) {
+  Exec.Reset();
+}
+
+void BeforeTargetReset(void) {
+}
+
+void AfterTargetReset(void) {
+}
+
+void AfterTargetDownload(void) {
+}

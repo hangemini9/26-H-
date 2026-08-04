@@ -1,0 +1,52 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "MC02: Configure Debug",
+            "type": "process",
+            "command": "C:\\Program Files\\CMake\\bin\\cmake.exe",
+            "args": [
+                "--preset",
+                "Debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "MC02: Build Debug",
+            "type": "process",
+            "command": "C:\\Program Files\\CMake\\bin\\cmake.exe",
+            "args": [
+                "--build",
+                "--preset",
+                "Debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOn": "MC02: Configure Debug",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "MC02: Open Ozone",
+            "type": "process",
+            "command": "C:\\Program Files\\SEGGER\\Ozone\\Ozone.exe",
+            "args": [
+                "${workspaceFolder}\\gimbal_MC02.jdebug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOn": "MC02: Build Debug",
+            "problemMatcher": []
+        }
+    ]
+}

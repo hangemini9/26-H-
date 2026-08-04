@@ -1,0 +1,22 @@
+/*********************************************************************
+*
+*  Ozone project: DAMIAO DM-MC-Board02 / STM32H723VGT6
+*
+*  Build first:
+*    cmake --preset Debug
+*    cmake --build --preset Debug
+*
+**********************************************************************
+*/
+
+void OnProjectLoad(void) {
+  Project.SetDevice("STM32H723VG");
+  Project.SetHostIF("USB", "0");
+  Project.SetTargetIF("SWD");
+  Project.SetTIFSpeed("4 MHz");
+
+  Project.AddRootPath(".");
+  Project.AddSvdFile("Debug/STM32H723.svd");
+
+  File.Open("build/Debug/gimbal_MC02.elf");
+}

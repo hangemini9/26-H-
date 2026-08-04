@@ -1,0 +1,70 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build MSPM0 (TEST_MODE)",
+      "type": "process",
+      "command": "C:\\ti\\ccs\\utils\\bin\\gmake.exe",
+      "args": [
+        "-j4"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Clean MSPM0",
+      "type": "process",
+      "command": "C:\\ti\\ccs\\utils\\bin\\gmake.exe",
+      "args": [
+        "clean"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Verify MSPM0 project",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "tools\\verify_project.ps1"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Build and Flash MSPM0 (onboard XDS110)",
+      "type": "process",
+      "command": "C:\\ti\\ccs\\utils\\bin\\gmake.exe",
+      "args": [
+        "flash"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Open CCS Live Tuning",
+      "type": "process",
+      "command": "C:\\ti\\ccs\\theia\\ccstudio.exe",
+      "args": [
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}

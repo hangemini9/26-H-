@@ -1,0 +1,28 @@
+
+
+GraphedExpression="g_gimbal_debug.command_position_rad", Color=#e56a6f, Show=0
+GraphedExpression="g_gimbal_debug.command_pipe_angle_mdeg", DisplayFormat=DISPLAY_FORMAT_DEC, Color=#35792b, Show=0
+GraphedExpression="g_gimbal_debug.competition_target_um", Color=#769dda, Show=0
+GraphedExpression="g_gimbal_debug.q2_breakaway_active", Color=#b14f0d, Show=0
+GraphedExpression="g_gimbal_debug.q2_breakaway_count", Color=#b3c38e, Show=0
+GraphedExpression="g_gimbal_debug.requested_position_rad", Color=#ab7b05, Show=0
+GraphedExpression="g_gimbal_debug.feedback_position_rad", Color=#7fd3b7, Show=0
+GraphedExpression="g_gimbal_debug.feedback_velocity_rad_s", Color=#50328f, Show=0
+OpenDocument="main.c", FilePath="C:/Users/Han/Desktop/dIANSAI/diansai(1)/gimbal_MC02/Core/Src/main.c", Line=4
+OpenDocument="startup_stm32h723xx.s", FilePath="C:/Users/Han/Desktop/dIANSAI/diansai(1)/gimbal_MC02/startup_stm32h723xx.s", Line=51
+OpenToolbar="Debug", Floating=0, x=0, y=0
+OpenWindow="Watched Data 1", DockArea=LEFT, x=0, y=0, w=840, h=761, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Data Sampling", DockArea=RIGHT, x=0, y=0, w=1306, h=429, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, VisibleTab=0, UniformSampleSpacing=0
+OpenWindow="Console", DockArea=BOTTOM, x=0, y=0, w=2560, h=500, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="RTOS", DockArea=RIGHT, x=0, y=1, w=1306, h=331, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, Showing=""
+SmartViewPlugin="", Page="", Toolbar="Hidden", Window="SmartView 1"
+TableHeader="Data Sampling Table", SortCol="None", SortOrder="ASCENDING", VisibleCols=["Index";"Time";" g_gimbal_debug.command_position_rad";" g_gimbal_debug.command_pipe_angle_mdeg";" g_gimbal_debug.competition_target_um";" g_gimbal_debug.q2_breakaway_active";" g_gimbal_debug.q2_breakaway_count";" g_gimbal_debug.requested_position_rad";" g_gimbal_debug.feedback_position_rad";" g_gimbal_debug.feedback_velocity_rad_s"], ColWidths=[100;100;100;100;100;100;100;100;100;100]
+TableHeader="Data Sampling Setup", SortCol="Expression", SortOrder="DESCENDING", VisibleCols=["Expression";"Type";"Value";"Min";"Max";"Average";"# Changes";"Min. Change";"Max. Change"], ColWidths=[318;234;100;100;100;100;110;126;126]
+TableHeader="Power Sampling", SortCol="None", SortOrder="ASCENDING", VisibleCols=["Index";"Time";"Ch 0"], ColWidths=[100;100;100]
+TableHeader="Watched Data 1", SortCol="Expression", SortOrder="ASCENDING", VisibleCols=["Expression";"Value";"Location";"Refresh"], ColWidths=[239;331;100;170]
+TableHeader="RegisterSelectionDialog", SortCol="None", SortOrder="ASCENDING", VisibleCols=[], ColWidths=[]
+TableHeader="TargetExceptionDialog", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Value";"Address";"Description"], ColWidths=[200;100;100;340]
+WatchedExpression="g_gimbal_debug", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="g_gimbal_debug.build_id", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="max_pipe_angle_deg", Window=Watched Data 1
+WatchedExpression="g_gimbal_debug.feedback_position_rad", Window=Watched Data 1

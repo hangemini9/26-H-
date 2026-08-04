@@ -1,0 +1,4 @@
+/build/
+/MDK-ARM/gimbal_MC02/
+*.log
+*.bak

@@ -1,0 +1,19 @@
+{
+  "version": 4,
+  "configurations": [
+    {
+      "name": "MSPM0G3507 TI-Clang",
+      "compilerPath": "C:\\ti\\ccs\\tools\\compiler\\ti-cgt-armllvm_5.1.1.LTS\\bin\\tiarmclang.exe",
+      "includePath": [
+        "${workspaceFolder}",
+        "C:\\ti\\mspm0_sdk_2_10_00_04\\source",
+        "C:\\ti\\mspm0_sdk_2_10_00_04\\source\\third_party\\CMSIS\\Core\\Include"
+      ],
+      "defines": [
+        "TEST_MODE=1",
+        "__MSPM0G3507__"
+      ],
+      "cStandard": "c11"
+    }
+  ]
+}

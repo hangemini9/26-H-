@@ -1,0 +1,107 @@
+/*********************************************************************
+*
+*  Ozone project: MC02 competition Vehicle firmware
+*
+*  Build first:
+*    cmake --preset Vehicle
+*    cmake --build --preset Vehicle
+*
+*  This project deliberately opens only the Vehicle ELF. Manual CALRUN and
+*  the dedicated DelayTest motion path are both compiled out.
+*
+**********************************************************************
+*/
+
+void OnProjectLoad(void) {
+  Edit.SysVar (VAR_HSS_SPEED, FREQ_100_HZ);
+  Project.SetDevice("STM32H723VG");
+  Project.SetHostIF("USB", "0");
+  Project.SetTargetIF("SWD");
+  Project.SetTIFSpeed("4 MHz");
+
+  Project.AddRootPath(".");
+  Project.AddSvdFile("Debug/STM32H723.svd");
+
+  File.Open("build/Vehicle/gimbal_MC02.elf");
+}
+
+/*
+ * Invoke after Debug.Continue() through:
+ *   Script.Exec("VehicleCommissioningSafe")
+ *
+ * These helpers only change bounded controller tunables; they do not start a
+ * question, enable the motor, or bypass any interlock.
+ */
+void VehicleCommissioningSafe(void) {
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.max_pipe_angle_deg"),
+    0x3F000000
+  );  // 0.5f
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.control_total_delay_ms"),
+    125
+  );
+}
+
+void VehicleCommissioning08(void) {
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.max_pipe_angle_deg"),
+    0x3F4CCCCD
+  );  // 0.8f
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.control_total_delay_ms"),
+    125
+  );
+}
+
+void VehicleCommissioning08Kd20(void) {
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.max_pipe_angle_deg"),
+    0x3F4CCCCD
+  );  // 0.8f
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.control_kd_s"),
+    0x40000000
+  );  // 2.0f
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.control_total_delay_ms"),
+    125
+  );
+}
+
+void VehicleCommissioningAggressiveQ2(void) {
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.max_pipe_angle_deg"),
+    0x40000000
+  );  // 2.0f
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.control_kp_s2"),
+    0x40800000
+  );  // 4.0f
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.control_kd_s"),
+    0x40200000
+  );  // 2.5f
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.max_motor_slew_rad_s"),
+    0x40400000
+  );  // 3.0f
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.control_total_delay_ms"),
+    125
+  );
+}
+
+void VehicleDisableDelayComp(void) {
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.control_total_delay_ms"),
+    0
+  );
+}
+
+void VehicleRestoreMeasuredDelay(void) {
+  Target.WriteU32(
+    Elf.GetExprValue("&g_gimbal_debug.control_total_delay_ms"),
+    125
+  );
+}
